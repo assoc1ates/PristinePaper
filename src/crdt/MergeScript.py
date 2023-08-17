@@ -1,6 +1,8 @@
 # MergeScript.py
 from CRDTJson import CRDTJson
 import json
+import time
+import os
 
 def load_json_to_crdt(filename):
     with open(filename, 'r') as file:
@@ -10,22 +12,47 @@ def load_json_to_crdt(filename):
     crdt_json.data = data
     return crdt_json
 
-# Load the saved JSON data from each process into CRDTJson instances
-process1_json = load_json_to_crdt('process1.json')
-process2_json = load_json_to_crdt('process2.json')
-process3_json = load_json_to_crdt('process3.json')
+def wait_for_files(filenames, interval=5):
+    while True:
+        if all(os.path.exists(f) for f in filenames):
+            break
+        print("Waiting for files...")
+        time.sleep(interval)
 
-# Create a new CRDTJson instance to merge into
-merged_json = CRDTJson()
+def delete_files(filenames):
+    for filename in filenames:
+        try:
+            os.remove(filename)
+            print(f"Deleted file: {filename}")
+        except FileNotFoundError:
+            print(f"File {filename} not found")
 
-# Merge the separate CRDTJson instances into the merged_json instance
-merged_json.merge(process1_json)
-merged_json.merge(process2_json)
-merged_json.merge(process3_json)
+def main():
+    filenames = ['process1.json', 'process2.json', 'process3.json']
 
-# Print the final, merged JSON object
-print(merged_json.data)
+    wait_for_files(filenames)
 
-# Optionally, save the merged data back to a new JSON file
-with open('merged.json', 'w') as file:
-    json.dump(merged_json.data, file)
+    merged_json = CRDTJson()
+
+    # Load existing data from merged.json if it exists
+    if os.path.exists('merged.json'):
+        merged_json = load_json_to_crdt('merged.json')
+
+    process1_json = load_json_to_crdt('process1.json')
+    process2_json = load_json_to_crdt('process2.json')
+    process3_json = load_json_to_crdt('process3.json')
+
+    merged_json.merge(process1_json)
+    merged_json.merge(process2_json)
+    merged_json.merge(process3_json)
+
+    print(merged_json.data)
+
+    with open('merged.json', 'w') as file:
+        json.dump(merged_json.data, file)
+
+    # Delete the process json files after merging
+    delete_files(filenames)
+
+if __name__ == "__main__":
+    main()
