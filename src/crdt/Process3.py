@@ -9,5 +9,10 @@ def main():
     with open('process3.json', 'w') as file:
         json.dump(process3_json.data, file)
 
+    process3_json.save_metadata('process3_metadata.json')
+
+    with open('process3.done', 'w') as file:
+        file.write('Done')
+
 if __name__ == "__main__":
     main()
