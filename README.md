@@ -16,23 +16,29 @@ PristinePaper is an aspirational auto-anonymization and de-anonymization layer d
 - Customizable anonymization patterns based on user requirements
 
 ## Planned Installation Method
-^^^bash
+```
 pip install pristinepaper
-^^^
+```
 
 ## Example Usage (Aspirational)
-^^^python
+```
 from pristinepaper import Anonymizer
+```
 
 # Initialize the anonymizer
+```
 anonymizer = Anonymizer()
+```
 
 # Anonymize a document
+```
 anonymized_doc = anonymizer.anonymize("sample_document.txt")
+```
 
 # De-anonymize a document
+```
 original_doc = anonymizer.deanonymize(anonymized_doc)
-^^^
+```
 
 ## Contributing
 We welcome contributions to PristinePaper! Once we have a more concrete roadmap, we will release a [Contributing Guide](CONTRIBUTING.md) with more details.
