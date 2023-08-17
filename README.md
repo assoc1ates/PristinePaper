@@ -9,6 +9,9 @@ PristinePaper is an aspirational auto-anonymization and de-anonymization layer d
 3. **Integration Ready**: Aspire to develop as a standalone tool, but with easy integration points for existing projects, such as Khoj and FileBot.
 4. **User Friendly**: Aim to create an easy-to-use Python library that requires minimal setup and configuration.
 
+- [ ] Test CRDT module
+- [ ] Test replicate [api](https://replicate.com/replicate/llama-2-70b-chat/api)
+
 ## Aspirational Features
 - Automatic detection and anonymization of sensitive information in documents
 - Secure and precise de-anonymization for authorized use cases
