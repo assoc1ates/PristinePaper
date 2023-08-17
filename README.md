@@ -23,22 +23,41 @@ PristinePaper is an aspirational auto-anonymization and de-anonymization layer d
 pip install pristinepaper
 ```
 
+## Docker Setup and Installation
+
+### Step 1: Clone the Repository
+```
+git clone <repository_url>
+cd <repository_directory>
+```
+
+### Step 2: Prepare Output Directory on Host
+```
+mkdir -p output-files
+chmod -R 777 output-files
+```
+
+### Step 3: Build and Run the Docker Containers
+```
+docker-compose up --build
+```
+
 ## Example Usage (Aspirational)
 ```
 from pristinepaper import Anonymizer
 ```
 
-# Initialize the anonymizer
+### Initialize the anonymizer
 ```
 anonymizer = Anonymizer()
 ```
 
-# Anonymize a document
+### Anonymize a document
 ```
 anonymized_doc = anonymizer.anonymize("sample_document.txt")
 ```
 
-# De-anonymize a document
+### De-anonymize a document
 ```
 original_doc = anonymizer.deanonymize(anonymized_doc)
 ```
