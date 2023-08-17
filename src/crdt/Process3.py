@@ -1,10 +1,15 @@
 # Process3.py
+import sys
+import uuid  # <-- Import the uuid module here
+sys.path.append('modules')
+
 from CRDTJson import CRDTJson
 import json
 
 def main():
+    process3_uuid = str(uuid.uuid4())  # <-- Generate a UUID for the process
     process3_json = CRDTJson()
-    process3_json.set("Hello", "Process3_UUID")
+    process3_json.set("Hello", process3_uuid)
 
     with open('process3.json', 'w') as file:
         json.dump(process3_json.data, file)

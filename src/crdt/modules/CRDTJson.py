@@ -1,26 +1,25 @@
 import time
 import uuid
 import json
+import threading
 
 class CRDTJson:
     def __init__(self):
         self.data = {}
         self.timestamps = {}
         self.uuids = set()
+        self.lock = threading.Lock()
 
     def set(self, replaced_text, process_uuid):
         timestamp = time.time()
-        text_uuid = str(uuid.uuid4())
 
-        if replaced_text in self.timestamps and self.timestamps[replaced_text] > timestamp:
-            return
+        with self.lock:
+            if (replaced_text in self.timestamps and self.timestamps[replaced_text] > timestamp) or (process_uuid in self.uuids):
+                return
 
-        if text_uuid in self.uuids:
-            return
-
-        self.data[replaced_text] = text_uuid
-        self.timestamps[replaced_text] = timestamp
-        self.uuids.add(text_uuid)
+            self.data[replaced_text] = process_uuid
+            self.timestamps[replaced_text] = timestamp
+            self.uuids.add(process_uuid)
 
     def get(self, replaced_text):
         return self.data.get(replaced_text)

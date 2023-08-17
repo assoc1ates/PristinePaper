@@ -1,3 +1,6 @@
+import sys
+sys.path.append('modules')
+
 from CRDTJson import CRDTJson
 import json
 import time
@@ -57,6 +60,7 @@ def main():
 
     delete_files(filenames)
     delete_files(done_filenames)
+    delete_files(metadata_filenames)
 
 if __name__ == "__main__":
     main()
