@@ -9,7 +9,7 @@ COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the entire project
-COPY src /app/src
+COPY src /app/
 
 # Change the permission of the output file directory
 RUN chmod 777 /app

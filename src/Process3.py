@@ -1,9 +1,8 @@
 # Process3.py
 import sys
 import uuid  # <-- Import the uuid module here
-sys.path.append('modules')
 
-from CRDTJson import CRDTJson
+from modules.CRDTJson import CRDTJson
 import json
 
 def main():

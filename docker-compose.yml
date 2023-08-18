@@ -5,29 +5,29 @@ services:
     build: .
     command: ["python", "/app/src/crdt/MergeScript.py"]
     volumes:
-      - output-files:/app:rw
+      - output-files:/app/:rw
 
   process1:
     build: .
     command: ["python", "/app/src/crdt/Process1.py"]
     volumes:
-      - output-files:/app:rw
+      - output-files:/app/:rw
 
   process2:
     build: .
     command: ["python", "/app/src/crdt/Process2.py"]
     volumes:
-      - output-files:/app:rw
+      - output-files:/app/:rw
 
   process3:
     build: .
     command: ["python", "/app/src/crdt/Process3.py"]
     volumes:
-      - output-files:/app:rw
+      - output-files:/app/:rw
 
 volumes:
   output-files:
     driver_opts:
       type: none
       o: bind
-      device: ${PWD}/output-files
+      device: ${PWD}/
