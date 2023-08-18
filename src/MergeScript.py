@@ -57,7 +57,7 @@ def main():
 
     merged_json.save_metadata('output-files/merged_metadata.json')
 
-    delete_files(filenames)
+    # delete_files(filenames)  # This line is commented out to retain the process*.json files
     delete_files(done_filenames)
     delete_files(metadata_filenames)
 
