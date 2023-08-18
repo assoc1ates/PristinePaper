@@ -31,20 +31,20 @@ def delete_files(filenames):
             print(f"File {filename} not found")
 
 def main():
-    filenames = ['process1.json', 'process2.json', 'process3.json']
-    done_filenames = ['process1.done', 'process2.done', 'process3.done']
-    metadata_filenames = ['process1_metadata.json', 'process2_metadata.json', 'process3_metadata.json']
+    filenames = ['output-files/process1.json', 'output-files/process2.json', 'output-files/process3.json']
+    done_filenames = ['output-files/process1.done', 'output-files/process2.done', 'output-files/process3.done']
+    metadata_filenames = ['output-files/process1_metadata.json', 'output-files/process2_metadata.json', 'output-files/process3_metadata.json']
 
     wait_for_files(done_filenames)
 
     merged_json = CRDTJson()
 
-    if os.path.exists('merged.json'):
-        merged_json = load_json_to_crdt('merged.json', 'merged_metadata.json')
+    if os.path.exists('output-files/merged.json'):
+        merged_json = load_json_to_crdt('output-files/merged.json', 'output-files/merged_metadata.json')
 
-    process1_json = load_json_to_crdt('process1.json', 'process1_metadata.json')
-    process2_json = load_json_to_crdt('process2.json', 'process2_metadata.json')
-    process3_json = load_json_to_crdt('process3.json', 'process3_metadata.json')
+    process1_json = load_json_to_crdt('output-files/process1.json', 'output-files/process1_metadata.json')
+    process2_json = load_json_to_crdt('output-files/process2.json', 'output-files/process2_metadata.json')
+    process3_json = load_json_to_crdt('output-files/process3.json', 'output-files/process3_metadata.json')
 
     merged_json.merge(process1_json)
     merged_json.merge(process2_json)
@@ -52,10 +52,10 @@ def main():
 
     print(merged_json.data)
 
-    with open('merged.json', 'w') as file:
+    with open('output-files/merged.json', 'w') as file:
         json.dump(merged_json.data, file)
 
-    merged_json.save_metadata('merged_metadata.json')
+    merged_json.save_metadata('output-files/merged_metadata.json')
 
     delete_files(filenames)
     delete_files(done_filenames)

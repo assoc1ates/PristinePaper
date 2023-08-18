@@ -15,4 +15,4 @@ COPY src /app/
 RUN chmod 777 /app
 
 # Command to run when the container starts
-CMD ["python", "/app/src/crdt/MergeScript.py"]
+CMD ["python", "/app/MergeScript.py"]

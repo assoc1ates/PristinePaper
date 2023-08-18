@@ -10,12 +10,12 @@ def main():
     process3_json = CRDTJson()
     process3_json.set("Hello", process3_uuid)
 
-    with open('process3.json', 'w') as file:
+    with open('output-files/process3.json', 'w') as file:
         json.dump(process3_json.data, file)
 
-    process3_json.save_metadata('process3_metadata.json')
+    process3_json.save_metadata('output-files/process3_metadata.json')
 
-    with open('process3.done', 'w') as file:
+    with open('output-files/process3.done', 'w') as file:
         file.write('Done')
 
 if __name__ == "__main__":

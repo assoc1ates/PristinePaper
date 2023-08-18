@@ -3,31 +3,31 @@ version: '3'
 services:
   merge_script:
     build: .
-    command: ["python", "/app/src/crdt/MergeScript.py"]
+    command: ["python", "/app/MergeScript.py"]
     volumes:
-      - output-files:/app/:rw
+      - output-files:/app/output-files/:rw
 
   process1:
     build: .
-    command: ["python", "/app/src/crdt/Process1.py"]
+    command: ["python", "/app/Process1.py"]
     volumes:
-      - output-files:/app/:rw
+      - output-files:/app/output-files/:rw
 
   process2:
     build: .
-    command: ["python", "/app/src/crdt/Process2.py"]
+    command: ["python", "/app/Process2.py"]
     volumes:
-      - output-files:/app/:rw
+      - output-files:/app/output-files/:rw
 
   process3:
     build: .
-    command: ["python", "/app/src/crdt/Process3.py"]
+    command: ["python", "/app/Process3.py"]
     volumes:
-      - output-files:/app/:rw
+      - output-files:/app/output-files/:rw
 
 volumes:
   output-files:
     driver_opts:
       type: none
       o: bind
-      device: ${PWD}/
+      device: ${PWD}/output-files
