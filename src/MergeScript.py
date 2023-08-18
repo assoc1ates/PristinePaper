@@ -1,7 +1,6 @@
 import sys
-sys.path.append('modules')
 
-from CRDTJson import CRDTJson
+from modules.CRDTJson import CRDTJson
 import json
 import time
 import os
