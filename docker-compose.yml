@@ -12,19 +12,24 @@ services:
     command: ["python", "/app/Process1.py"]
     volumes:
       - output-files:/app/output-files/:rw
+    environment:
+      - REPLICATE_API_TOKEN=${REPLICATE_API_TOKEN}
 
   process2:
     build: .
     command: ["python", "/app/Process2.py"]
     volumes:
       - output-files:/app/output-files/:rw
+    environment:
+      - REPLICATE_API_TOKEN=${REPLICATE_API_TOKEN}
 
   process3:
     build: .
     command: ["python", "/app/Process3.py"]
     volumes:
       - output-files:/app/output-files/:rw
-
+    environment:
+      - REPLICATE_API_TOKEN=${REPLICATE_API_TOKEN}
 volumes:
   output-files:
     driver_opts:
